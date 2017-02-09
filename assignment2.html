@@ -1,0 +1,106 @@
+<!-- Mike Purzycki mkp9ug and Nathan Nayda ntn4jg-->
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <title>Assignment 2</title>
+    <link rel="stylesheet" href="assignment2.css" type="text/css">   
+
+  <style>
+  #banner {
+  	background-image: url("http://cenblog.org/iyc-2011/files/2011/06/JE2010_HeroHR_RGB-21.jpg");
+  		background-repeat: repeat;
+  		background-position: center;
+		border: auto;
+		padding: auto;
+		height: 300px;
+		width: 100%;
+
+  }
+  </style>
+
+  <style type="text/css">
+	<!--
+	.tab { margin-left: 40px; }
+	-->
+  </style>
+
+  <style type="text/css">
+	<!--
+	.textboxclass { height: 200px; width: 600px; }
+	-->
+  </style>
+
+  <script type="text/javascript">
+     
+    function changeQType(value) {
+        if(value == "mc") {
+        	document.getElementById("mc").style.visibility = "visible";
+        	document.getElementById("tf").style.visibility = "hidden"; 
+        	document.getElementById("sa").style.visibility = "hidden";       }
+        if(value == "tf") {
+        	document.getElementById("tf").style.visibility = "visible";
+        	document.getElementById("mc").style.visibility = "hidden";
+        	document.getElementById("sa").style.visibility = "hidden"; 
+        }
+        if(value == "sa") {
+        	document.getElementById("sa").style.visibility = "visible";
+        	document.getElementById("mc").style.visibility = "hidden";
+        	document.getElementById("tf").style.visibility = "hidden"; 
+        }
+    	 
+    }             
+   </script>
+
+  </head>
+
+  <body>
+
+  	<center>
+  		<h2>
+  			<img id="banner" src="http://cenblog.org/iyc-2011/files/2011/06/JE2010_HeroHR_RGB-21.jpg" alt="Banner Image"/>
+  		</h2>
+
+  	<font size ="5">
+  	<h2><a name="example">Choose Question Type</a></h2>
+  	
+  	<font size="3">
+  	<p>
+  		Choose the type of question you'd like to create:
+  	</p>
+
+  	<p class="tab">
+  		<b> Question Type </b>
+  		<br>
+  		<select id= "qtype" name="qtype" onchange="changeQType(value)">
+  			<option value="mc">multiple choice</option>
+  			<option value="tf">true/false</option>
+  			<option value="sa">short answer</option>
+  		</select>
+  	</p>
+
+  	<form id= "mc" style = "visibility:hidden">
+  		<b> Enter multiple choice question question </b> <br>
+  		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
+  		<br>
+  		
+  	</form>
+
+  	<form id= "tf" style = "visibility:hidden">
+  		<b> Enter true/false question </b> <br>
+  		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
+  		<br>
+  		
+  	</form>
+
+  	<form id= "sa" style = "visibility:hidden">
+  		<b> Enter short answer question </b> <br>
+  		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
+  		<br>
+  		Answer:<br><textarea rows="8" cols="97"></textarea><br>
+  		<button onclick="">
+  	</form>
+  </center>
+
