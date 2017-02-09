@@ -37,21 +37,77 @@
      
     function changeQType(value) {
         if(value == "mc") {
-        	document.getElementById("mc").style.visibility = "visible";
-        	document.getElementById("tf").style.visibility = "hidden"; 
-        	document.getElementById("sa").style.visibility = "hidden";       }
+        	document.getElementById("multiple_choice_form").style.display="block";
+        	document.getElementById("true_false_form").style.display="none"; 
+          document.getElementById("select_all_form").style.display="none"; 
+        	document.getElementById("sa").style.display="none";
+        }
         if(value == "tf") {
-        	document.getElementById("tf").style.visibility = "visible";
-        	document.getElementById("mc").style.visibility = "hidden";
-        	document.getElementById("sa").style.visibility = "hidden"; 
+        	document.getElementById("true_false_form").style.display="block";
+        	document.getElementById("multiple_choice_form").style.display="none";
+        	document.getElementById("sa").style.display="none"; 
+          document.getElementById("select_all_form").style.display="none"; 
         }
         if(value == "sa") {
-        	document.getElementById("sa").style.visibility = "visible";
-        	document.getElementById("mc").style.visibility = "hidden";
-        	document.getElementById("tf").style.visibility = "hidden"; 
+        	document.getElementById("sa").style.display="block";
+        	document.getElementById("multiple_choice_form").style.display="none";
+        	document.getElementById("true_false_form").style.display="none"; 
+          document.getElementById("select_all_form").style.display="none"; 
         }
+        if(value == "sata") {
+          document.getElementById("sa").style.display="none";
+          document.getElementById("multiple_choice_form").style.display="none";
+          document.getElementById("true_false_form").style.display="none";
+          document.getElementById("select_all_form").style.display="block"; 
+
+        }
+      }
+        function MC_addChoice() {
+        
+        var rows = document.getElementById("multiple_answer_choices").rows.length;
+        var oRow = document.getElementById("multiple_answer_choices").insertRow(rows);
+        oRow.onmouseover=function(){document.getElementById("multiple_answer_choices").clickedRowIndex=this.rowIndex;};
+        var oCell1 = oRow.insertCell(0);
+          var oCell2 = oRow.insertCell(1);
+          var oCell3 = oRow.insertCell(2);          
+          oCell1.innerHTML = "<input type=radio name=answer value=a"+(rows-1)+">";
+          oCell1.align = "right";
+          oCell2.innerHTML = "<input type=text name=a"+(rows-1) +">";
+          oCell3.innerHTML = "<input type=button value=\" X \" onClick=\"MC_delRow()\">";
+        document.recalc();
+
+      }
+
+      function MC_delRow() {
+          document.getElementById("multiple_answer_choices").deleteRow(document.getElementById("multiple_answer_choices").clickedRowIndex);
+      }
+
+      function SA_addChoice() {
+        
+        var rows = document.getElementById("select_all_choices").rows.length;
+        var oRow = document.getElementById("select_all_choices").insertRow(rows);
+        oRow.onmouseover=function(){document.getElementById("select_all_choices").clickedRowIndex=this.rowIndex;};
+        var oCell1 = oRow.insertCell(0);
+          var oCell2 = oRow.insertCell(1);
+          var oCell3 = oRow.insertCell(2);          
+          oCell1.innerHTML = "Correct<input type=checkbox name=answer value=a"+(rows-1)+">";
+          oCell1.align = "right";
+          oCell2.innerHTML = "<input type=text name=a"+(rows-1) +">";
+          oCell3.innerHTML = "<input type=button value=\" X \" onClick=\"SA_delRow()\">";
+        document.recalc();
+
+      }
+
+      function SA_delRow() {
+          document.getElementById("select_all_choices").deleteRow(document.getElementById("select_all_choices").clickedRowIndex);
+      }
+      function questionChange(thevalue) {
+        if (thevalue=="tf") {
+          document.getElementById("true_false_form").style.visibility = "visible";
+        }
+      }
     	 
-    }             
+                 
    </script>
 
   </head>
@@ -78,24 +134,75 @@
   			<option value="mc">multiple choice</option>
   			<option value="tf">true/false</option>
   			<option value="sa">short answer</option>
+        <option value="sata">Select All That Apply</option>
   		</select>
   	</p>
 
-  	<form id= "mc" style = "visibility:hidden">
-  		<b> Enter multiple choice question question </b> <br>
-  		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
-  		<br>
-  		
-  	</form>
+  	<form id="multiple_choice_form" action="jepardy.html" method="post"> 
+          <table id="multiple_answer_choices">
+            <tr>
+              <td>Question: </td> 
+              <td><input type="text" name="question" required="true" /> </td>
+            </tr>
+            <tr>
+              <td>Answer Choices:  </td>
+              <td></td>
+              <td><input type=button value=" + " onClick="MC_addChoice()"></td>
+            </tr> 
+            <tr onMouseOver="multiple_answer_choices.clickedRowIndex=this.rowIndex">
+              <td align="right"><input type="radio" name="answer" value="a1" checked></td>
+              <td><input type="text" name="a1"></td>
+              <td><input type=button name=dyntbl1_delRow value=" X " onClick="MC_delRow()"></td>
+            </tr>
 
-  	<form id= "tf" style = "visibility:hidden">
-  		<b> Enter true/false question </b> <br>
-  		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
-  		<br>
-  		
-  	</form>
+          </table>
+          <button type="submit" value="Submit" title="Submit">Submit</button>
+          </form>
 
-  	<form id= "sa" style = "visibility:hidden">
+
+
+          <form id="true_false_form" action="jepardy.html" method="post" style="display: none;"> 
+          <table id="true_false_table">
+            <tr>
+              <td>Statement: </td> 
+              <td><input type="text" name="question" required="true" /> </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left"><input type="radio" name="answer" value="true" checked>True</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left"><input type="radio" name="answer" value="false">False</td>
+            </tr>
+
+          </table>
+          <button type="submit" value="Submit" title="Submit">Submit</button>
+          </form>
+
+
+          <form id="select_all_form" action="jepardy.html" method="post" style="display: none;"> 
+          <table id="select_all_choices">
+            <tr>
+              <td>Question: </td> 
+              <td><input type="text" name="question" required="true" /> </td>
+            </tr>
+            <tr>
+              <td>Answer Choices:  </td>
+              <td></td>
+              <td><input type=button value=" + " onClick="SA_addChoice()"></td>
+            </tr> 
+            <tr onMouseOver="select_all_choices.clickedRowIndex=this.rowIndex">
+              <td align="right">Correct<input type="checkbox" name="answer" value="a1"></td>
+              <td><input type="text" name="a1"></td>
+              <td><input type=button name=dyntbl1_delRow value=" X " onClick="SA_delRow()"></td>
+            </tr>
+
+          </table>
+          <button type="submit" value="Submit" title="Submit">Submit</button>
+          </form>
+
+  	<form id= "sa" style="display: none;">
   		<b> Enter short answer question </b> <br>
   		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
   		<br>
