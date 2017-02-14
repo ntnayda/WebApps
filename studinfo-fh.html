@@ -1,0 +1,236 @@
+<html>
+
+<head>
+ <title>CS 4640 Information Form</title>
+ <link rel="stylesheet" type="text/css" href="../../cs4640-style.css">
+</head>
+
+<body>
+
+<script language=javascript>
+<!-- hide code
+
+function submitIt(form)
+{
+   errCount=0;
+   errorMsg="";
+   nVal = form.FName.value
+   if ( nVal == "")
+   {
+      errorMsg += "\n\n"+(errCount+1)+". Please enter a first name.";
+      errCount++;
+   }
+   lVal = form.LName.value
+   if ( lVal == "")
+   {
+      errorMsg += "\n\n"+(errCount+1)+". Please enter a last name.";
+      errCount++;
+   }
+   phoneVal=form.Phone.value
+   if (phoneVal == "")
+   {
+      errorMsg += "\n\n"+(errCount+1)+". Please enter a day-time phone number.";
+      errCount++;
+   }
+   eMailVal = form.EmailAddress.value
+   if (eMailVal == "")
+   {
+      errorMsg += "\n\n"+(errCount+1)+". Please enter an email address."
+      errCount++;
+   }
+   cVal = form.Major.selectedIndex
+   if ( cVal < 1 ) // was 2 when no default 
+   {
+      errorMsg += "\n\n"+(errCount+1)+". Please enter a major."
+      errCount++;
+   }
+   if ( cVal == 7 )
+   {
+      otherMajor = form.OtherMajor.value
+      if (otherMajor == "")
+      {
+         errorMsg += "\n\n"+(errCount+1)+". \"Other\" Please enter a major."
+         errCount++;
+      }
+   }
+
+   if (errCount > 0)
+   {
+      alert ("Please correct the following " + errCount + " fields" + errorMsg);
+      return false;
+   }
+   else
+   {
+      // alert("Thank you " + form.FName.value + " for the information.") 
+      return true;
+   }
+} // end function.
+// end hiding code -->
+
+</script>
+
+<!-- ------------------------------------------------------- -->
+<!-- End java script checking, start the form. -->
+<!-- ------------------------------------------------------- -->
+
+<div aLIgn="left">
+ <form onSubmit="return submitIt(this)" method="post" action ="formHandler.php">
+
+ <!-- This field is hidden.  It allows us to control who the data -->
+ <!-- is mailed to from the HTML.  It's more flexible. -->
+ <input type="hidden" name="MAILTO" value="your-email@virginia.edu">
+
+  <center>
+  <table border="0" cellpadding="2" cellspacing="1" width="60%">
+   <tr>
+    <td width="60%" colspan="6">
+     <h1 align="center">CS 4640: Information Form</h1>
+     <h2 align="center"><U>Programming Languages for Web Applications</u></h2>
+     <hr>
+    </td>
+   </tr>
+
+    <tr>
+      <td width="60%" colspan="6" bgcolor="#333399">
+        <p align="center"><font color="#FFFFFF"><b>Please fill in all fields.</b></font></td>
+    </tr>
+
+    <tr>
+      <td width="12%">First Name</td>
+      <td width="24%" colspan="3"><input TYPE="text" NAME="FName" SIZE="20"></td>
+      <td width="12%">Major</td>
+      <td width="12%"><select size="1" name="Major">
+          <option>---------------</option>
+          <option selected value="SYST">SYST</option>
+          <option value="CS">CS</option>
+          <option value="CPE">CPE</option>
+          <option value="ECE">ECE</option>
+          <option value="Other">Other</option>
+        </select></td>
+    </tr>
+
+    <tr>
+      <td width="12%">Last Name</td>
+      <td width="24%" colspan="3"><input type="text" name="LName" size="20"></td>
+      <td width="12%">If other:</td>
+      <td width="12%"><input type="text" name="OtherMajor" size="9"></td>
+    </tr>
+    <tr>
+      <td width="12%">Email</td>
+      <td width="24%" colspan="3"><textarea rows="2" name="EmailAddress" cols="20"></textarea></td>
+      <td colspan=2><I>Separate multiple EMail IDs by new lines.</I></td>
+      <td width="12%"></td>
+    </tr>
+    <tr>
+      <td width="12%">Day Phone</td>
+      <td width="24%" colspan="3"><input type="text" name="Phone" size="20"></td>
+      <td width="12%"></td>
+      <td width="12%"></td>
+    </tr>
+    <tr>
+      <td width="12%">URL</td>
+      <td width="24%" colspan="3"><input type="text" name="WebSiteURL" size="20" VALUE="https://www."></td>
+      <td colspan=2><I>Where all of your assignments will be posted.</I></td>
+      <td width="12%"></td>
+    </tr>
+    <tr>
+      <td width="12%"></td>
+      <td align="center" width="12%"></td>
+      <td width="12%" align="center" colspan="2"></td>
+      <td width="12%" align="center"></td>
+      <td width="12%" align="center"></td>
+    </tr>
+
+    <tr>
+    <td colspan="7"><HR></td>
+    </tr>
+
+    <tr bgcolor="#333399">
+      <td width="12%"><FONT Color="#FFFFFF"><B>Topic</B></FONT></td>
+      <td align="center" width="12%"><FONT color="#FFFFFF"><B>None</B></FONT></td>
+      <td width="12%" align="center" colspan="2"><FONT color="#FFFFFF"><B>Beginner</B></FONT></td>
+      <td width="12%" align="center"><FONT color="#FFFFFF"><B>Intermediate</B></FONT></td>
+      <td width="12%" align="center"><FONT color="#FFFFFF"><B>Expert</B></FONT></td>
+    </tr>
+
+    <tr>
+      <td width="12%">HTML</td>
+      <td align="center" width="12%"><input type="radio" value="none" checked name="LevelHTML"></td>
+      <td width="12%" colspan="2" align="center"><input type="radio" value="beginner" name="LevelHTML"></td>
+      <td width="12%" align="center"><input type="radio" value="inter" name="LevelHTML"></td>
+      <td width="12%" align="center"><input type="radio" value="expert" name="LevelHTML"></td>
+    </tr>
+
+    <tr bgcolor="#C0C0C0">
+      <td width="12%">Java</td>
+      <td align="center" width="12%"><input type="radio" value="none" checked name="LevelJava"></td>
+      <td width="12%" colspan="2" align="center"><input type="radio" value="beginner" name="LevelJava"></td>
+      <td width="12%" align="center"><input type="radio" value="inter" name="LevelJava"></td>
+      <td width="12%" align="center"><input type="radio" value="expert" name="LevelJava"></td>
+    </tr>
+
+    <tr>
+      <td width="12%">JavaScript</td>
+      <td align="center" width="12%"><input type="radio" value="none" checked name="LevelJS"></td>
+      <td width="12%" colspan="2" align="center"><input type="radio" value="beginner" name="LevelJS"></td>
+      <td width="12%" align="center"><input type="radio" value="inter" name="LevelJS"></td>
+      <td width="12%" align="center"><input type="radio" value="expert" name="LevelJS"></td>
+    </tr>
+
+    <tr bgcolor="#C0C0C0">
+      <td width="12%">Servlets</td>
+      <td align="center" width="12%"><input type="radio" value="none" checked name="LevelServlets"></td>
+      <td width="12%" colspan="2" align="center"><input type="radio" value="beginner" name="LevelServlets"></td>
+      <td width="12%" align="center"><input type="radio" value="inter" name="LevelServlets"></td>
+      <td width="12%" align="center"><input type="radio" value="expert" name="LevelServlets"></td>
+    </tr>
+
+    <tr>
+      <td width="12%">JSP</td>
+      <td align="center" width="12%"><input type="radio" value="none" checked name="LevelJSP"></td>
+      <td width="12%" colspan="2" align="center"><input type="radio" value="beginner" name="LevelJSP"></td>
+      <td width="12%" align="center"><input type="radio" value="inter" name="LevelJSP"></td>
+      <td width="12%" align="center"><input type="radio" value="expert" name="LevelJSP"></td>
+    </tr>
+
+    <tr> <!-- extra space -->
+      <td width="30%" colspan="3" align="center">&nbsp;</td>
+      <td width="30%" colspan="3" align="center">&nbsp;&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td width="30%" colspan="3" align="center">
+       <input checked type="radio" value="New Student" name="NewOrUpdate">New Student</td>
+      <td width="30%" colspan="3" align="center">
+       <input type="radio" value="Update" name="NewOrUpdate">Update Information</td>
+    </tr>
+
+    <tr> <!-- extra space -->
+      <td width="60%" colspan="6">&nbsp;&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td width="60%" colspan="6">
+       &nbsp;&nbsp;
+       <input type="submit" value="Submit" Name="submit">
+       &nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="reset" value="Reset" Name="reset">
+      </td>
+    </tr>
+
+    <tr>
+      <td width="60%" colspan="6"><B>&nbsp;&nbsp;&nbsp;</B></td>
+    </tr>
+
+    <tr><td width="60%" colspan="6"></td></tr> <!-- extra space -->
+  </table>
+  </center>
+  
+</form>
+</div>
+
+<hr>
+
+
+</body>
+</html>

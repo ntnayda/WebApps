@@ -10,48 +10,48 @@
 
   <style>
   #banner {
-  	background-image: url("http://cenblog.org/iyc-2011/files/2011/06/JE2010_HeroHR_RGB-21.jpg");
-  		background-repeat: repeat;
-  		background-position: center;
-		border: auto;
-		padding: auto;
-		height: 300px;
-		width: 100%;
+    background-image: url("http://cenblog.org/iyc-2011/files/2011/06/JE2010_HeroHR_RGB-21.jpg");
+      background-repeat: repeat;
+      background-position: center;
+    border: auto;
+    padding: auto;
+    height: 300px;
+    width: 100%;
 
   }
   </style>
 
   <style type="text/css">
-	<!--
-	.tab { margin-left: 40px; }
-	-->
+  <!--
+  .tab { margin-left: 40px; }
+  -->
   </style>
 
   <style type="text/css">
-	<!--
-	.textboxclass { height: 200px; width: 600px; }
-	-->
+  <!--
+  .textboxclass { height: 200px; width: 600px; }
+  -->
   </style>
 
   <script type="text/javascript">
      
     function changeQType(value) {
         if(value == "mc") {
-        	document.getElementById("multiple_choice_form").style.display="block";
-        	document.getElementById("true_false_form").style.display="none"; 
+          document.getElementById("multiple_choice_form").style.display="block";
+          document.getElementById("true_false_form").style.display="none"; 
           document.getElementById("select_all_form").style.display="none"; 
-        	document.getElementById("sa").style.display="none";
+          document.getElementById("sa").style.display="none";
         }
         if(value == "tf") {
-        	document.getElementById("true_false_form").style.display="block";
-        	document.getElementById("multiple_choice_form").style.display="none";
-        	document.getElementById("sa").style.display="none"; 
+          document.getElementById("true_false_form").style.display="block";
+          document.getElementById("multiple_choice_form").style.display="none";
+          document.getElementById("sa").style.display="none"; 
           document.getElementById("select_all_form").style.display="none"; 
         }
         if(value == "sa") {
-        	document.getElementById("sa").style.display="block";
-        	document.getElementById("multiple_choice_form").style.display="none";
-        	document.getElementById("true_false_form").style.display="none"; 
+          document.getElementById("sa").style.display="block";
+          document.getElementById("multiple_choice_form").style.display="none";
+          document.getElementById("true_false_form").style.display="none"; 
           document.getElementById("select_all_form").style.display="none"; 
         }
         if(value == "sata") {
@@ -106,7 +106,67 @@
           document.getElementById("true_false_form").style.visibility = "visible";
         }
       }
-    	 
+
+        
+      
+      function submitMC() {
+        var thetable = document.getElementById("multiple_answer_choices");
+        var ok = true;
+        if(thetable.rows[0].cells[1].firstChild.value == "") {
+          ok = false;
+        }
+        for(var i=2; i<thetable.rows.length; i++) {
+          if(thetable.rows[i].cells[1].firstChild.value == "") {
+            ok = false;
+          }
+        }
+        if(ok==false) {
+          alert("Please fill out each item in the form.");
+        }
+        return ok;
+      }
+
+      function submitTF() {
+        var thetable = document.getElementById("true_false_table");
+        var ok = true;
+        if(thetable.rows[0].cells[1].firstChild.value == "") {
+          ok = false;
+        }
+
+        if(ok==false) {
+          alert("Please enter a question.");
+        }
+        return ok;
+      }
+      
+      function submitSATA() {
+        var thetable = document.getElementById("select_all_choices");
+        var ok = true;
+        if(thetable.rows[0].cells[1].firstChild.value == "") {
+          ok = false;
+        }
+        for(var i=2; i<thetable.rows.length; i++) {
+          if(thetable.rows[i].cells[1].firstChild.value == "") {
+            ok = false;
+          }
+        }
+        if(ok==false) {
+          alert("Please fill out each item in the form.");
+        }
+        return ok;
+      }
+      function submitSA() {
+        var ok=true;
+        if(document.getElementById("sa_question").value=="") {
+          alert("Please enter a question.");
+          ok=false;
+        }
+        if(document.getElementById("sa_answer").value=="") {
+          alert("Please enter an answer.");
+          ok=false;
+        }
+        return ok;
+      }
                  
    </script>
 
@@ -114,35 +174,35 @@
 
   <body>
 
-  	<center>
-  		<h2>
-  			<img id="banner" src="http://cenblog.org/iyc-2011/files/2011/06/JE2010_HeroHR_RGB-21.jpg" alt="Banner Image"/>
-  		</h2>
+    <center>
+      <h2>
+        <img id="banner" src="http://cenblog.org/iyc-2011/files/2011/06/JE2010_HeroHR_RGB-21.jpg" alt="Banner Image"/>
+      </h2>
+<h1>By Mike Purzycki and Nathan Nayda</h1>
+    <font size ="5">
+    <h2><a name="example">Choose Question Type</a></h2>
+    
+    <font size="3">
+    <p>
+      Choose the type of question you'd like to create:
+    </p>
 
-  	<font size ="5">
-  	<h2><a name="example">Choose Question Type</a></h2>
-  	
-  	<font size="3">
-  	<p>
-  		Choose the type of question you'd like to create:
-  	</p>
-
-  	<p class="tab">
-  		<b> Question Type </b>
-  		<br>
-  		<select id= "qtype" name="qtype" onchange="changeQType(value)">
-  			<option value="mc">multiple choice</option>
-  			<option value="tf">true/false</option>
-  			<option value="sa">short answer</option>
+    <p class="tab">
+      <b> Question Type </b>
+      <br>
+      <select id= "qtype" name="qtype" onchange="changeQType(value)">
+        <option value="mc">multiple choice</option>
+        <option value="tf">true/false</option>
+        <option value="sa">short answer</option>
         <option value="sata">Select All That Apply</option>
-  		</select>
-  	</p>
+      </select>
+    </p>
 
-  	<form id="multiple_choice_form" action="jepardy.html" method="post"> 
+    <form id="multiple_choice_form" action="formhandler2.php" method="post" onSubmit="return submitMC()"> 
           <table id="multiple_answer_choices">
             <tr>
               <td>Question: </td> 
-              <td><input type="text" name="question" required="true" /> </td>
+              <td><input type="text" name="question" /> </td>
             </tr>
             <tr>
               <td>Answer Choices:  </td>
@@ -156,16 +216,17 @@
             </tr>
 
           </table>
-          <button type="submit" value="Submit" title="Submit">Submit</button>
+          <input type="submit" value="Submit" title="Submit">
+          <input type="reset" value="Reset" Name="reset">
           </form>
 
 
 
-          <form id="true_false_form" action="jepardy.html" method="post" style="display: none;"> 
+          <form id="true_false_form" action="formhandler2.php" method="post" onSubmit="return submitTF()" style="display: none;"> 
           <table id="true_false_table">
             <tr>
               <td>Statement: </td> 
-              <td><input type="text" name="question" required="true" /> </td>
+              <td><input type="text" name="question"/> </td>
             </tr>
             <tr>
               <td></td>
@@ -177,15 +238,16 @@
             </tr>
 
           </table>
-          <button type="submit" value="Submit" title="Submit">Submit</button>
+          <input type="submit" value="Submit" title="Submit">
+          <input type="reset" value="Reset" Name="reset">
           </form>
 
 
-          <form id="select_all_form" action="jepardy.html" method="post" style="display: none;"> 
+          <form id="select_all_form" action="formhandler2.php" onSubmit="return submitSATA()" method="post" style="display: none;"> 
           <table id="select_all_choices">
             <tr>
               <td>Question: </td> 
-              <td><input type="text" name="question" required="true" /> </td>
+              <td><input type="text" name="question"/> </td>
             </tr>
             <tr>
               <td>Answer Choices:  </td>
@@ -200,14 +262,16 @@
 
           </table>
           <button type="submit" value="Submit" title="Submit">Submit</button>
+          <input type="reset" value="Reset" Name="reset">
           </form>
 
-  	<form id= "sa" style="display: none;">
-  		<b> Enter short answer question </b> <br>
-  		Question:<br><input type="text" name="username" required="true" style="width: 600px;"/>
-  		<br>
-  		Answer:<br><textarea rows="8" cols="97"></textarea><br>
-  		<button onclick="">
-  	</form>
+    <form id= "sa" style="display: none;" method="post" onSubmit="return submitSA()" action="formhandler2.php">
+      <b> Enter short answer question </b> <br>
+      Question:<br><input id="sa_question" type="text" name="username" style="width: 600px;"/>
+      <br>
+      Answer:<br><textarea id="sa_answer" rows="8" cols="97"></textarea><br>
+      <button type="submit" value="Submit" title="Submit">Submit</button>
+      <input type="reset" value="Reset" Name="reset">
+    </form>
   </center>
 
