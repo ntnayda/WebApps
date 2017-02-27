@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,26 +18,34 @@
       <td align="center"><strong>Parameter</strong></td>
       <td align="center"><string>Value</string></td>
     </tr>
-    
-    <tr>
-      <td width="20%">Submited Values</td>
-      <td><?php 
-      foreach( $_POST as $stuff ) {
-        if( is_array( $stuff ) ) {
-          foreach( $stuff as $thing ) {
-            echo $thing;
+      <?php 
+      foreach( $_POST as $key => $val ) {
+        $_SESSION[$key] = $val;
+        if( is_array( $val ) ) {
+          echo "<tr><td>$key</td><td>";
+          foreach( $val as $current ) {
+            echo "$current, ";
           }
+          echo "</td></tr>";
         } 
         else {
-          echo $stuff;
-          echo ",";
+          echo "<tr><td>$key</td><td>$val</td></tr>";
         }
       }
+      /*
+      if(isset($_REQUEST["destination"])) {
+        header("Location: {$_REQUEST["destination"]}");
+      }
+      else if(isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: {$_SERVER["HTTP_REFERER"]}");
+      }
+      else {}*/
       ?>
   
-</td>      
-    </tr>    
+   
   </table>
 
+<input type="button" onclick="location.href='assignment4.php';" value="Return" />
 </body>
+
 </html> 
