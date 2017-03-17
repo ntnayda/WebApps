@@ -119,8 +119,8 @@ public class testfileread extends HttpServlet
       out.println (" <TABLE CELLSPACING=0 CELLPADDING=0 BORDER=0 ALIGN=center WIDTH=\"50%\">");
       out.println ("  <TR ALIGN=center>");
       out.println ("   <TD><INPUT NAME=\"submit\" TYPE=\"submit\" value=\"Create Game\"></TD>");
-      out.println ("   <TD><INPUT NAME=\"clear\" TYPE=\"button\" value=\"Clear Form\"");
-      out.println ("              onClick=\"ClearForm()\"></TD>");
+      out.println ("   <TD><INPUT NAME=\"moreq\" TYPE=\"button\" value=\"Add more questions\"");
+      out.println ("              onClick=\"location.href='http://plato.cs.virginia.edu/~ntn4jg/jeopardy/assignment3.php';\"></TD>");
       out.println ("  </TR>");
       out.println (" </TABLE>");
       out.println ("");
@@ -149,6 +149,7 @@ public void doPost (HttpServletRequest req, HttpServletResponse res)
       outputstring += req.getParameter("row"+i) + ";";
       outputstring += req.getParameter("column"+i) + ";";
       outputstring += req.getParameter("score" +i) +";";
+      writer.println(outputstring);
       }writer.close();
 } catch (IOException e) {
    out.println(e);
@@ -176,20 +177,21 @@ int column = 0;
 
       out.println ("<FORM METHOD=\"post\" ACTION=\"http://localhost:8080/cs4640/jeopardy\">");
 
-      out.println ("<TABLE CELLSPACING=0 CELLPADDING=5 BORDER=1 ALIGN=center>");
+      out.println ("<TABLE CELLSPACING=0 CELLPADDING=50 BORDER=1 ALIGN=center>");
       out.println ("");
       int newcount=0;
       int currentrow=1;
       int currentcol=1;
 
-      while(newcount<count) {
             while(currentrow<=row) {
                   out.println("<tr>");
                   while(currentcol<=column) {
-                        int currentrow2 = Integer.parseInt(req.getParameter("row"+currentrow));
-                        int currentcol2 = Integer.parseInt(req.getParameter("column"+currentcol));
-                        if(currentrow2==currentrow && currentrow2==currentrow) {
-                              out.println("<td>"+req.getParameter("score"+newcount)+"</td>");
+                        for(int i=0;i<count;i++) {
+                              int currentrow2 = Integer.parseInt(req.getParameter("row"+i));
+                              int currentcol2 = Integer.parseInt(req.getParameter("column"+i));
+                              if(currentrow2==currentrow && currentcol2==currentcol) {
+                                    out.println("<td>"+req.getParameter("score"+i)+"</td>");
+                              }
                         }
                         currentcol++;
                   }
@@ -197,10 +199,10 @@ int column = 0;
                   currentcol=1;
                   out.println("</tr>");
             }
-            newcount++;
-      }
+
       out.println("</table>");
       out.println ("");
+      out.println("<button onclick=\"window.history.back();\">Edit</button>");
       out.println ("</CENTER>");
       out.println ("</BODY>");
 
