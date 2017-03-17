@@ -20,22 +20,22 @@ public class testfileread extends HttpServlet
 
       out.println ("<HTML>");
       out.println ("<HEAD>");
+      out.println("<style>");
+      out.println("table {background-color: powderblue;}");
+      out.println("body {color:white;}");
+      out.println("head {color:white;}");
+      out.println("body {font-family: Helvetica, compressed}");
+      out.println("head {font-family: Helvetica, compressed}");
+      out.println("</style>");
       out.println ("<TITLE>A simple servlet program</TITLE>");
       out.println ("</HEAD>");
+      
+      out.println("<h1>By Nathan Nayda and Mike Purzycki</h1>");
 
       out.println ("<BODY>");
       out.println ("<CENTER>");
 
       out.println ("<FORM METHOD=\"post\" ACTION=\"http://localhost:8080/cs4640/jeopardy\">");
-      out.println ("<P>");
-      out.println ("Please enter four integer values between 1 and 24 inclusive.");
-      out.println ("This program will return all expressions using the four operators");
-      out.println ("+, -, * and / that use each value exactly once and that have the result 24.");
-      out.println ("There may be a lot of what looks like duplicates,");
-      out.println ("but they are actually different ways of rearranging the numbers.");
-      out.println ("(This program can actually handle all integers.)");
-      out.println ("");
-      out.println ("<P>");
       out.println ("<TABLE CELLSPACING=0 CELLPADDING=5 BORDER=1 ALIGN=center>");
       out.println ("");
 
@@ -170,8 +170,17 @@ int column = 0;
      out.println ("<HTML>");
       out.println ("<HEAD>");
       out.println ("<TITLE>A simple servlet program</TITLE>");
+      out.println("<style>");
+      out.println("table {background-color: #060CE9;}");
+      out.println("body {color:white;}");
+      out.println("head {color:white;}");
+      out.println("body {font-family: Helvetica, compressed}");
+      out.println("head {font-family: Helvetica, compressed}");
+      out.println("</style>");
       out.println ("</HEAD>");
-
+      
+      out.println("<h1>By Nathan Nayda and Mike Purzycki</h1>");
+      
       out.println ("<BODY>");
       out.println ("<CENTER>");
 
